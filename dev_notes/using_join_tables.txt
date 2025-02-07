@@ -1,0 +1,21 @@
+Many to Many Relationship Models:
+
+- Troubleshoot:
+    properly defined the many-to-many relationship in the Password model
+    The dependent: :destroy ensures proper cleanup of associated records
+    Find passwords through the join table
+    Associate passwords with users
+    Handle the many-to-many relationship properly
+
+- Rendering on index view file:
+    - render @passwords: shorthand
+        - Iterates over the @passwords collection for each password, it looks for a partial named _password.html.erb in the app/views/passwords/ directory
+        - need to create  partial file named _password.html.erb in app/views/passwords/ -> should expect a local variable named password
+    - old iteration:
+        <%# old code since using render @passwords now
+        <%  @passwords.each do |password| %>
+        <%= password.url %>
+        <%= password.username %>
+        <%= password.password %>
+        <% end %>
+        %>
