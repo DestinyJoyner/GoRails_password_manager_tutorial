@@ -59,3 +59,16 @@ form {
   cursor: pointer;
   font: inherit;
 }
+
+.show-header svg {
+  width: 1rem; /* 16px */
+  height: 1rem;
+  vertical-align: middle;
+}
+
+.show-header {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
