@@ -9,7 +9,7 @@
 
 </h1>
 
-<%= link_to "Edit", edit_password_path(@password) %>
+<%= link_to "Edit", edit_password_path(@password) if @password.can_edit?(current_user) %>
 </div>
 
 <h5> Username: </h5>
@@ -23,18 +23,23 @@
 </pre>
 
 <h5> Share Password: </h5>
-<%= link_to "Share Password/ Add a User", new_password_share_path(@password) %>
+<%= link_to "Share Password/ Add a User", new_password_share_path(@password) if @password.can_share?(current_user) %>
 <br>
 
 <h5> Shared with: </h5>
-<% @password.users.excluding(current_user).each do |user| %>
+<% @password.user_passwords.includes(:user).each do |user_password| %>
   <div class="shared-user">
-  <%= user.email %>
-  <%= button_to "Remove", password_share_path(@password, user), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    <span><%= user_password.user.email %></span>
+    <span><%= user_password.role.titleize %></span>
+    <%= button_to "Remove", 
+                 password_share_path(@password, user_password.user), 
+                 method: :delete, 
+                 data: { turbo_confirm: "Are you sure?" } if @password.can_share?(current_user) %>
   </div>
 <% end %>
 
 <br><br>
 
-<%= link_to "Delete", password_path(@password), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<%= link_to "Delete", password_path(@password), 
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if @password.deletable?(current_user) %>
 

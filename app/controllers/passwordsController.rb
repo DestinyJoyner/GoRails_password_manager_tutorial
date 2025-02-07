@@ -1,6 +1,8 @@
 class PasswordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_password, except: [:index, :new, :create]
+  before_action :require_editor_access, only: [:edit, :update]
+  before_action :require_owner_access, only: [:destroy]
   
   # using current_user to also look for current user's passwords and not other users' passwords
   def index
@@ -17,8 +19,10 @@ class PasswordsController < ApplicationController
 
   def create
     # .create creates row with join table
-    @password = current_user.passwords.create(password_params)
-    if @password.persisted?
+    # @password = current_user.passwords.create(password_params)
+    @password = Password.new(password_params)
+    @password.user_passwords.new(user: current_user, role: "owner")
+    if @password.save
       redirect_to @password
     else
       render :new, status: :unprocessable_entity
@@ -52,5 +56,13 @@ class PasswordsController < ApplicationController
 
   def set_password
     @password = current_user.passwords.find(params[:id])
+  end
+
+  def require_editor_access
+    redirect_ to @password unless @password.can_edit?(current_user)
+  end
+
+  def require_owner_access
+    redirect_ to @password unless @password.can_share?(current_user)
   end
 end

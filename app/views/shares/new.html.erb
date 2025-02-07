@@ -7,6 +7,11 @@
   </div>
 
   <div>
+  <%= form.label :role %>
+  <%= form.select :role, UserPassword::ROLES.map { |role| [role.titleize, role] } %>
+  </div>
+
+  <div>
   <%= form.submit "Share Password" %>
   </div>
   <% end %>
