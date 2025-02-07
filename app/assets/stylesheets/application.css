@@ -72,3 +72,13 @@ form {
   justify-content: space-between;
   align-items: center;
 }
+
+pre {
+  background-color: darkblue;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

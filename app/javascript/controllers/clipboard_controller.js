@@ -10,13 +10,18 @@ export default class extends Controller {
     Handles both success and error cases
   */
   connect() {
-    console.log("Clipboard controller connected", this.contentValue);
+    this.originalText = this.element.textContent;
+    // console.log("Clipboard controller connected", this.contentValue);
   }
   async copy(event) {
     try {
       const textToCopy = this.contentValue;
       await navigator.clipboard.writeText(textToCopy);
-      console.log("Text copied successfully!");
+      this.element.textContent = "Copied!";
+      setTimeout(() => {
+        this.element.textContent = this.originalText;
+      }, 1500);
+      // console.log("Text copied successfully!");
     } catch (error) {
       console.error("Failed to copy text:", error);
     }
