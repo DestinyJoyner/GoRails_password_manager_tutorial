@@ -18,14 +18,16 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-  # flash alerts -> devise
+    <div class="main-container">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    </div>
   </body>
 </html>
