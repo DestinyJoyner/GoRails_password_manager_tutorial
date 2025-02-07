@@ -1,2 +1,5 @@
 Copy to CLickboard 
-    - heroicons
+    - heroicons for svg icons
+    - Clipboard API: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API
+        - writetext-> method -> JS code
+            - app/javascript/ (change hello_controller to clipboard_controller -> clear out) -> add async copy method with API code

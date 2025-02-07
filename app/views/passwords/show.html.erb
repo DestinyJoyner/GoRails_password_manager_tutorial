@@ -12,11 +12,14 @@
 </div>
 
 <h5> Username: </h5>
-<pre><code><%= @password.username %></code></pre>
+<pre><code><%= @password.username %></code>
+<%= button_tag "Copy", type: "button", data: { controller: "clipboard", action: "clipboard#copy", clipboard_content_value: @password.username } %>
+</pre>
 
 <h5> Password: </h5>
-<pre><code><%= @password.password %></code></pre>
-
+<pre><code><%= @password.password %></code>
+<%= button_tag "Copy", type: "button", data: { controller: "clipboard", action: "clipboard#copy", clipboard_content_value: @password.password } %>
+</pre>
 
 
 <%= link_to "Delete", password_path(@password), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
