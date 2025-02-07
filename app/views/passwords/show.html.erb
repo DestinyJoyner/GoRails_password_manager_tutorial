@@ -1,7 +1,12 @@
-<h1> Show Password </h1>
+<h1> <%= @password.url %> </h1>
 
-<div>
-    <%= @password.url %>
-    <%= @password.username %>
-    <%= @password.password %>
-</div>
+<h5> Username: </h5>
+<pre><code><%= @password.username %></code></pre>
+
+<h5> Password: </h5>
+<pre><code><%= @password.password %></code></pre>
+
+
+<%= link_to "Edit", edit_password_path(@password) %>
+<%= link_to "Delete", password_path(@password), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+

@@ -1,0 +1,9 @@
+<h1> Edit Password </h1>
+
+<%= render "form", password: @password %>
+
+<div>
+  <%= button_to "Delete", password_path(@password), 
+      method: :delete,
+      form: { data: { turbo_confirm: "Are you sure?" } } %>
+</div>

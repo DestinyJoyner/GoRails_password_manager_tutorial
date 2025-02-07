@@ -26,9 +26,25 @@ class PasswordsController < ApplicationController
   end
 
   def show
-    @password = current_user.passwords.find(params[:id])
   end
   
+  def edit
+  end
+
+  def update
+    if @password.update(password_params)
+      redirect_to @password
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    # because of foreign key constraint, we need to destroy the join table row first
+    @password.destroy
+    redirect_to root_path
+  end
+
   private
   def password_params
     params.require(:password).permit(:url, :username, :password)
