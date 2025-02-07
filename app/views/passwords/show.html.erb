@@ -8,6 +8,7 @@
 <% end %>
 
 </h1>
+
 <%= link_to "Edit", edit_password_path(@password) %>
 </div>
 
@@ -21,6 +22,19 @@
 <%= button_tag "Copy", type: "button", data: { controller: "clipboard", action: "clipboard#copy", clipboard_content_value: @password.password } %>
 </pre>
 
+<h5> Share Password: </h5>
+<%= link_to "Share Password/ Add a User", new_password_share_path(@password) %>
+<br>
+
+<h5> Shared with: </h5>
+<% @password.users.excluding(current_user).each do |user| %>
+  <div class="shared-user">
+  <%= user.email %>
+  <%= button_to "Remove", password_share_path(@password, user), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  </div>
+<% end %>
+
+<br><br>
 
 <%= link_to "Delete", password_path(@password), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 
