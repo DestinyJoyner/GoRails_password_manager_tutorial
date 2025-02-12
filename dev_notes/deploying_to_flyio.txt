@@ -3,4 +3,4 @@
 - set up production environment before deploy:
     - rails db:encryption:init
     - EDITOR="code --wait" rails credentials:edit --environment=production
-    06856a98ce1c2715035ff874bc5341bf
+- fly.io requires card info to deploy -> not doing this
