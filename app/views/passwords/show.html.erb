@@ -41,5 +41,5 @@
 <br><br>
 
 <%= link_to "Delete", password_path(@password), 
-    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if @password.deletable?(current_user) %>
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if @password.can_delete?(current_user) %>
 

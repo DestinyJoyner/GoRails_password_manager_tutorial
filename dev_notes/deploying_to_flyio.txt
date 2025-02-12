@@ -1,0 +1,6 @@
+- install flyctl (fly control)
+    - brew install flyctl
+- set up production environment before deploy:
+    - rails db:encryption:init
+    - EDITOR="code --wait" rails credentials:edit --environment=production
+    06856a98ce1c2715035ff874bc5341bf
